@@ -9,9 +9,11 @@ class CardModal extends React.Component {
 
     let cardToUpdate = {
       // information for the card we want to update
-      name: event.target.name.value,
-      owned: event.target.status.owned,
       _id: this.props.card._id,
+      name: this.props.card.name,
+      rarity: this.props.card.rarity,
+      imageUrl: this.props.card.imageUrl,
+      owned: event.target.owned.checked,
       __v: this.props.card.__v
     }
     this.props.updateCard(cardToUpdate)
@@ -19,7 +21,7 @@ class CardModal extends React.Component {
   render() {
     return (
       <Modal
-        show={this.props.isUpdateOpen}
+        show={this.props.isOpen}
         onHide={this.props.onHide}
       >
         <Modal.Header closeButton>

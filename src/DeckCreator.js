@@ -94,9 +94,9 @@ class DeckCreate extends React.Component {
     }
   };
 
-  openModal = () => {
+  openModal = (cardObj) => {
     console.log('here')
-    this.setState({ isOpen: true });
+    this.setState({ isOpen: true, selectedCard: cardObj });
   }
   closeModal = () => this.setState({ isOpen: false });
 
@@ -109,7 +109,7 @@ class DeckCreate extends React.Component {
   render() {
     return (
       <>
-        <h1 onClick={this.openModal}>MTG Deck Builder</h1>
+        <h1>MTG Deck Builder</h1>
         <CardModal
         openModal={this.openModal}
         onHide={this.closeModal}
@@ -122,8 +122,8 @@ class DeckCreate extends React.Component {
           return (
             <Card key={cardElem._id} >
               <Card.Img 
-
-              variant="top" 
+              onClick={() => {this.openModal(cardElem)}}
+              variant="top"
               src={cardElem.imageUrl} 
               style={{width:'200px'}} 
               />
