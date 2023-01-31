@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import axios from 'axios';
 import DeckCreator from './DeckCreator';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import About from './About';
