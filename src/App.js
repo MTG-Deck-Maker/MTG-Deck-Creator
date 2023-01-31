@@ -9,12 +9,13 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import SearchForm from './components/SearchForm';
 
 
 
 class App extends React.Component {
-  
-  
+
+
   render() {
     return (
       <>
@@ -27,11 +28,16 @@ class App extends React.Component {
             >
             </Route>
             <Route
+              exact path="/SearchForm"
+              element={<SearchForm />}
+            >
+            </Route>
+            <Route
               exact path="/about"
               element={<About />}
             >
             </Route>
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
+           
           </Routes>
           <Footer />
         </Router>

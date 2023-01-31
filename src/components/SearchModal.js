@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Container, Modal } from 'react-bootstrap';
 
-class CardModal extends React.Component {
+class SearchModal extends React.Component {
   
   handleCardUpdate = (event) => {
     event.preventDefault();
@@ -38,7 +38,7 @@ class CardModal extends React.Component {
               <Form.Group controlId='owned'>
                 <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
               </Form.Group>
-              <Button variant='info' type='submit'>Update Card</Button>
+              <Button variant='info' type='submit'>Update This card</Button>
             </Form>
           </Container>
         </Modal.Body>
@@ -52,4 +52,4 @@ class CardModal extends React.Component {
   }
 }
 
-export default CardModal;
+export default SearchModal;
