@@ -10,6 +10,7 @@ class DeckCreate extends React.Component {
       cards: [],
       tempCards: [],
       isOpen: false,
+      selectedCard: {},
     }
   }
   // ********** THIS GETS CARDS FROM DB ************
@@ -17,7 +18,6 @@ class DeckCreate extends React.Component {
     try {
       let url = `${process.env.REACT_APP_SERVER}/card`;
       let cardData = await axios.get(url);
-
       this.setState({
         cards: cardData.data
       });
@@ -94,7 +94,10 @@ class DeckCreate extends React.Component {
     }
   };
 
-  openModal = () => this.setState({ isOpen: true });
+  openModal = () => {
+    console.log('here')
+    this.setState({ isOpen: true });
+  }
   closeModal = () => this.setState({ isOpen: false });
 
   componentDidMount() {
@@ -106,19 +109,24 @@ class DeckCreate extends React.Component {
   render() {
     return (
       <>
-        <h1>MTG Deck Builder</h1>
+        <h1 onClick={this.openModal}>MTG Deck Builder</h1>
+        <CardModal
+        openModal={this.openModal}
+        onHide={this.closeModal}
+        isOpen={this.state.isOpen}
+        card={this.state.selectedCard}
+        updateCard={this.updateCard}
+        />
         {this.state.cards.length > 0 ?
           this.state.cards.map((cardElem, idx) => {
           return (
-            <Card key={cardElem._id} onClick={this.openModal}>
-              <CardModal
-              openModal={this.openModal}
-              onHide={this.closeModal}
-              isOpen={this.state.isOpen}
-              cardElem={cardElem}
-              updateCard={this.updateCard}
+            <Card key={cardElem._id} >
+              <Card.Img 
+
+              variant="top" 
+              src={cardElem.imageUrl} 
+              style={{width:'200px'}} 
               />
-              <Card.Img variant="top" src={cardElem.imageUrl} style={{width:'200px'}}/>
               <Card.Body>
                 <Button variant="primary">Get Card</Button>
               </Card.Body>

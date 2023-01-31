@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Container, Modal } from 'react-bootstrap';
 
-class UpdateCardModal extends React.Component {
+class CardModal extends React.Component {
   
   handleCardUpdate = (event) => {
     event.preventDefault();
@@ -9,9 +9,8 @@ class UpdateCardModal extends React.Component {
 
     let cardToUpdate = {
       // information for the card we want to update
-      title: event.target.title.value,
-      description: event.target.description.value,
-      status: event.target.status.checked,
+      name: event.target.name.value,
+      owned: event.target.status.owned,
       _id: this.props.card._id,
       __v: this.props.card.__v
     }
@@ -28,17 +27,14 @@ class UpdateCardModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <Container>
+            <img alt='a card' src={this.props.card.imageUrl}></img>
             <Form onSubmit={this.handleCardUpdate}>
-              <Form.Group controlId='title'>
-                <Form.Label>Title</Form.Label>
-                <Form.Control defaultValue={this.props.card.title} type='text' />
+              <Form.Group controlId='name'>
+                <Form.Label>Name</Form.Label>
+                <Form.Control defaultValue={this.props.card.name} type='text' />
               </Form.Group>
-              <Form.Group controlId='description'>
-                <Form.Label>description</Form.Label>
-                <Form.Control defaultValue={this.props.card.description} type='text' />
-              </Form.Group>
-              <Form.Group controlId='status'>
-                <Form.Check defaultChecked={this.props.card.status} type='checkbox' label='status' />
+              <Form.Group controlId='owned'>
+                <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
               </Form.Group>
               <Button variant='info' type='submit'>Update This card</Button>
             </Form>
@@ -54,4 +50,4 @@ class UpdateCardModal extends React.Component {
   }
 }
 
-export default UpdateCardModal;
+export default CardModal;
