@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import CardModal from './components/CardModal';
 import { Button, Card } from 'react-bootstrap';
 
 class DeckCreate extends React.Component {
@@ -7,7 +8,8 @@ class DeckCreate extends React.Component {
     super(props);
     this.state = {
       cards: [],
-      tempCards: []
+      tempCards: [],
+      isOpen: false,
     }
   }
   // ********** THIS GETS CARDS FROM DB ************
@@ -92,6 +94,9 @@ class DeckCreate extends React.Component {
     }
   };
 
+  openModal = () => this.setState({ isOpen: true });
+  closeModal = () => this.setState({ isOpen: false });
+
   componentDidMount() {
     this.getCardsDb();
   }
@@ -105,14 +110,21 @@ class DeckCreate extends React.Component {
         {this.state.cards.length > 0 ?
           this.state.cards.map((cardElem, idx) => {
           return (
-            <Card key={cardElem._id}>
+            <Card key={cardElem._id} onClick={this.openModal}>
+              <CardModal
+              openModal={this.openModal}
+              onHide={this.closeModal}
+              isOpen={this.state.isOpen}
+              cardElem={cardElem}
+              updateCard={this.updateCard}
+              />
               <Card.Img variant="top" src={cardElem.imageUrl} style={{width:'200px'}}/>
               <Card.Body>
                 <Button variant="primary">Get Card</Button>
               </Card.Body>
             </Card>
           )
-        }
+        },
         ) : (
           <h2>NO DECK FOUND</h2>
         )}
