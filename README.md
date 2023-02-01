@@ -32,4 +32,3 @@ Marco Villafana
 [trello](https://trello.com/b/HKhgU6xZ/mtg-deck-builder)
 
 [whiteboard](https://miro.com/welcomeonboard/TUVwT24xNk5paWwzNmp3MHI2cVN6V1dINFFtTkdXRzl6cVV3dnRJZzhJVkE1RDJIQk5sbE1HS1k0Q3luOWJwa3wzNDU4NzY0NTM4NzEyNTc1MDQ3fDI=?share_link_id=680430192778)
-
