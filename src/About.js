@@ -67,7 +67,7 @@ class Profile extends Component {
               <Card.Body>
                 <Card.Title>About Rafael:</Card.Title>
                 <Card.Text>
-                  Hello everyone my name is Rafael I’m an up and coming software developer, with a passion for creating products that are innovative, exceed the criteria and that will make the client ecstatic to see their vision fulfilled.
+                Hello everyone, my name is Rafael I’m a software developer, with a passion for creating products that are innovative, exceed the criteria and that will make the client ecstatic to see their vision fulfilled..
                 </Card.Text>
               </Card.Body>
             </Card>
