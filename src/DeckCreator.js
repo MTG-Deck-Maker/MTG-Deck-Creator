@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import CardModal from './components/CardModal';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class DeckCreate extends React.Component {
@@ -95,7 +95,7 @@ class DeckCreate extends React.Component {
     return (
       <>
         <h1>MTG Deck Builder</h1>
-        
+
         <CardModal
           openModal={this.openModal}
           onHide={this.closeModal}
@@ -104,7 +104,7 @@ class DeckCreate extends React.Component {
           updateCard={this.updateCard}
           deleteCard={this.deleteCard}
         />
-        
+
         {/* renders only when logged in */}
         {this.props.auth0.isAuthenticated ?
           (this.state.cards.length > 0 ?
@@ -120,12 +120,13 @@ class DeckCreate extends React.Component {
                   <Card.Body>
                   </Card.Body>
                 </Card>
-              )}) : 
-              <h2>NO DECK FOUND</h2>
+              )
+            }) :
+            <h2>NO DECK FOUND</h2>
           ) :
           <div>
             <h2>PLEASE LOGIN</h2>
-            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen title="login"></iframe>
             <p><a href="https://giphy.com/gifs/adultswim-adult-swim-birdgirl-access-denied-t0virGpgSlp4mkfiXq">via GIPHY</a></p>
           </div>
         }

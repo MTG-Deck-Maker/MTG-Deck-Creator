@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import SearchModal from './components/SearchModal'
 import axios from 'axios';
 import {withAuth0} from '@auth0/auth0-react';
@@ -81,7 +81,6 @@ class SearchForm extends React.Component {
           <label htmlFor="">Search A Card By Name:
             <input type="text" onInput={this.handleInput} />
           </label>
-          {/* <button type='submit'>Search</button> */}
         </form>
 
         <SearchModal
@@ -104,7 +103,7 @@ class SearchForm extends React.Component {
                     style={{ width: '200px' }}
                   />
                   <Card.Body>
-                    {/* <Button variant="primary" onClick={ () =>{this.postCard(cardElem)}}>Add Card</Button> */}
+                    
                   </Card.Body>
                 </Card>
               )
