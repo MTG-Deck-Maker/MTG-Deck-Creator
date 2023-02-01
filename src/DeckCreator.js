@@ -2,18 +2,14 @@ import React from 'react';
 import axios from 'axios';
 import CardModal from './components/CardModal';
 import { Button, Card } from 'react-bootstrap';
-import Search from './components/SearchForm';
-import SearchModal from './components/SearchModal';
 
 class DeckCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cards: [],
-      tempCards: [],
       isOpen: false,
       selectedCard: {},
-      isOpenSearchModal: false,
     }
   }
   // ********** THIS GETS CARDS FROM DB ************
@@ -27,37 +23,6 @@ class DeckCreate extends React.Component {
 
 
     } catch (error) {
-      console.log(error.message);
-    }
-  }
-  // ********** THIS GET A CARD FROM API ************
-  getCard = async (name) => {
-    console.log(name);
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/card/${name}`;
-      let cardData = await axios.get(url);
-
-      this.setState({
-        tempCard: cardData.data
-      });
-
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  // ********** THIS POSTS A CARD ************
-  postCard = async (cardObj) => {
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/card`;
-      let createdCard = await axios.post(url, cardObj);
-
-      this.setState({
-        cards: [...this.state.cards, createdCard.data]
-      });
-    }
-    catch (error) {
       console.log(error.message);
     }
   }
@@ -92,6 +57,7 @@ class DeckCreate extends React.Component {
       this.setState({
         cards: updatedCards
       });
+      this.closeModal();
     }
     catch (error) {
       console.log(error.message);
@@ -100,9 +66,8 @@ class DeckCreate extends React.Component {
   // **********THIS OPENS/CLOSE THE  MODALS ************
   openModal = (cardObj) => this.setState({ isOpen: true, selectedCard: cardObj });
 
-  closeModal = () => this.setState({ isOpen: false, isOpenSearchModal: false });
+  closeModal = () => this.setState({ isOpen: false});
 
-  openSearchModal = () => this.setState({ isOpenSearchModal: true });
 
 
   componentDidMount() {
@@ -115,26 +80,14 @@ class DeckCreate extends React.Component {
     return (
       <>
         <h1>MTG Deck Builder</h1>
-        < Search
-          getCard={this.getCard}
-          searchResults={this.state.tempCards}
-          openSearchModal={this.openSearchModal}
 
-
-        />
-        <SearchModal
-          openSearchModal={this.openSearchModal}
-          onHide={this.closeModal}
-          isOpenSearchModal={this.state.isOpenSearchModal}
-          card={this.state.selectedCard}
-          postCard={this.postCard}
-        />
         <CardModal
           openModal={this.openModal}
           onHide={this.closeModal}
           isOpen={this.state.isOpen}
           card={this.state.selectedCard}
           updateCard={this.updateCard}
+          deleteCard={this.deleteCard}
         />
         {this.state.cards.length > 0 ?
           this.state.cards.map((cardElem, idx) => {
@@ -147,7 +100,6 @@ class DeckCreate extends React.Component {
                   style={{ width: '200px' }}
                 />
                 <Card.Body>
-                  <Button variant="primary">Get Card</Button>
                 </Card.Body>
               </Card>
             )

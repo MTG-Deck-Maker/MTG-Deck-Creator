@@ -25,7 +25,7 @@ class CardModal extends React.Component {
         onHide={this.props.onHide}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{this.props.card.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
@@ -43,6 +43,7 @@ class CardModal extends React.Component {
           </Container>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant='danger' onClick={() => {this.props.deleteCard(this.props.card._id)}}>Delete</Button>
           <Button variant="secondary" onClick={this.props.onHide}>
             Close
           </Button>

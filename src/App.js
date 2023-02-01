@@ -9,7 +9,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import SearchForm from './components/SearchForm';
+import SearchForm from './SearchForm';
 
 
 

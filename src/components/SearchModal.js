@@ -3,11 +3,11 @@ import { Button, Form, Container, Modal } from 'react-bootstrap';
 
 class SearchModal extends React.Component {
   
-  handleCardUpdate = (event) => {
+  handleCardAdd = (event) => {
     event.preventDefault();
     this.props.onHide();
 
-    let cardToUpdate = {
+    let cardToAdd = {
       // information for the card we want to update
       _id: this.props.card._id,
       name: this.props.card.name,
@@ -16,12 +16,12 @@ class SearchModal extends React.Component {
       owned: event.target.owned.checked,
       __v: this.props.card.__v
     }
-    this.props.updateCard(cardToUpdate)
+    this.props.postCard(cardToAdd)
   }
   render() {
     return (
       <Modal
-        show={this.props.isOpen}
+        show={this.props.isOpenSearchModal}
         onHide={this.props.onHide}
       >
         <Modal.Header closeButton>
@@ -30,7 +30,7 @@ class SearchModal extends React.Component {
         <Modal.Body>
           <Container>
             <img alt='a card' src={this.props.card.imageUrl}></img>
-            <Form onSubmit={this.handleCardUpdate}>
+            <Form onSubmit={this.handleCardAdd}>
               <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control defaultValue={this.props.card.name} type='text' />
@@ -38,7 +38,7 @@ class SearchModal extends React.Component {
               <Form.Group controlId='owned'>
                 <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
               </Form.Group>
-              <Button variant='info' type='submit'>Update This card</Button>
+              <Button variant='info' type='submit'>Add Card</Button>
             </Form>
           </Container>
         </Modal.Body>
