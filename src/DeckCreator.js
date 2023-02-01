@@ -84,13 +84,14 @@ class DeckCreate extends React.Component {
 
   componentDidMount() {
     this.getCardsDb();
+    //this.props.auth0.isAuthenticated && this.getCardsDb()
   }
 
 
 
   render() {
     //** refills cards[] after logging in
-    this.props.auth0.isAuthenticated && this.getCardsDb()
+   this.props.auth0.isAuthenticated && this.getCardsDb()
 
     return (
       <>
