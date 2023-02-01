@@ -14,6 +14,7 @@ class CardModal extends React.Component {
       rarity: this.props.card.rarity,
       imageUrl: this.props.card.imageUrl,
       owned: event.target.owned.checked,
+      email: this.props.card.email,
       __v: this.props.card.__v
     }
     this.props.updateCard(cardToUpdate)

@@ -3,6 +3,7 @@ import axios from 'axios';
 import CardModal from './components/CardModal';
 import { Card, Col, Row } from 'react-bootstrap';
 import './DeckCreator.css'
+import { withAuth0 } from '@auth0/auth0-react';
 
 class DeckCreate extends React.Component {
   constructor(props) {
@@ -15,16 +16,27 @@ class DeckCreate extends React.Component {
   }
   // ********** THIS GETS CARDS FROM DB ************
   getCardsDb = async () => {
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/card`;
-      let cardData = await axios.get(url);
-      this.setState({
-        cards: cardData.data
-      });
+    if (this.props.auth0.isAuthenticated) {
+      const res = await this.props.auth0.getIdTokenClaims()
+      const jwt = res.__raw
+      // console.log(jwt);
+      const config = {
+        headers: { "Authorization": `Bearer ${jwt}` },
+        method: 'get',
+        baseURL: process.env.REACT_APP_SERVER,
+        url: '/card',
+      }
+
+      try {
+        let cardData = await axios(config);
+        this.setState({
+          cards: cardData.data
+        });
 
 
-    } catch (error) {
-      console.log(error.message);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   }
 
@@ -120,4 +132,4 @@ class DeckCreate extends React.Component {
 
 
 
-export default DeckCreate;
+export default withAuth0(DeckCreate);
