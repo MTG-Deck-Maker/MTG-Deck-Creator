@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import CardModal from './components/CardModal';
-import { Card } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
+import './DeckCreator.css'
 import { withAuth0 } from '@auth0/auth0-react';
 
 class DeckCreate extends React.Component {
@@ -107,9 +108,11 @@ class DeckCreate extends React.Component {
 
         {/* renders only when logged in */}
         {this.props.auth0.isAuthenticated ?
+         <Row xs={1} md={2} lg={5} className="g-5">
           (this.state.cards.length > 0 ?
             this.state.cards.map((cardElem, idx) => {
               return (
+              <Col>
                 <Card key={cardElem._id} >
                   <Card.Img
                     onClick={() => { this.openModal(cardElem) }}
@@ -120,16 +123,19 @@ class DeckCreate extends React.Component {
                   <Card.Body>
                   </Card.Body>
                 </Card>
+               </Col>
               )
             }) :
             <h2>NO DECK FOUND</h2>
-          ) :
+          )  
+          </Row> :
           <div>
             <h2>PLEASE LOGIN</h2>
             <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen title="login"></iframe>
             <p><a href="https://giphy.com/gifs/adultswim-adult-swim-birdgirl-access-denied-t0virGpgSlp4mkfiXq">via GIPHY</a></p>
           </div>
         }
+
       </>
     )
   }

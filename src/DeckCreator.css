@@ -1,0 +1,8 @@
+.card-img-top{
+  width: 300px;
+  margin: auto;
+}
+.card {
+  border-width: none;
+  background-color: #aaa;
+}

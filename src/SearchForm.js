@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import SearchModal from './components/SearchModal'
 import axios from 'axios';
+import './SearchForm.css'
 import {withAuth0} from '@auth0/auth0-react';
-
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -90,28 +90,30 @@ class SearchForm extends React.Component {
           card={this.state.selectedCard}
           postCard={this.postCard}
         />
-
+                <Row xs={1} md={2} lg={5} className="g-5">
         {
           this.state.tempCards.length > 0 ?
             this.state.tempCards.map((cardElem, idx) => {
               return (
+                <Col>
                 <Card key={idx} >
                   <Card.Img
                     onClick={() => { this.openSearchModal(cardElem) }}
                     variant="top"
                     src={cardElem.imageUrl}
-                    style={{ width: '200px' }}
                   />
                   <Card.Body>
                     
                   </Card.Body>
                 </Card>
+                </Col>
               )
             },
             ) : (
               <h2>NO CARDS FOUND</h2>
             )
         }
+        </Row>
       </>
     );
   }
