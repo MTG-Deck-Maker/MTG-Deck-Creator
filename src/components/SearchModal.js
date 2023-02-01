@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Form, Container, Modal } from 'react-bootstrap';
 
-class CardModal extends React.Component {
+class SearchModal extends React.Component {
   
-  handleCardUpdate = (event) => {
+  handleCardAdd = (event) => {
     event.preventDefault();
     this.props.onHide();
 
-    let cardToUpdate = {
+    let cardToAdd = {
       // information for the card we want to update
       _id: this.props.card._id,
       name: this.props.card.name,
@@ -16,21 +16,21 @@ class CardModal extends React.Component {
       owned: event.target.owned.checked,
       __v: this.props.card.__v
     }
-    this.props.updateCard(cardToUpdate)
+    this.props.postCard(cardToAdd)
   }
   render() {
     return (
       <Modal
-        show={this.props.isOpen}
+        show={this.props.isOpenSearchModal}
         onHide={this.props.onHide}
       >
         <Modal.Header closeButton>
-          <Modal.Title>{this.props.card.name}</Modal.Title>
+          <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
             <img alt='a card' src={this.props.card.imageUrl}></img>
-            <Form onSubmit={this.handleCardUpdate}>
+            <Form onSubmit={this.handleCardAdd}>
               <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control defaultValue={this.props.card.name} type='text' />
@@ -38,12 +38,11 @@ class CardModal extends React.Component {
               <Form.Group controlId='owned'>
                 <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
               </Form.Group>
-              <Button variant='info' type='submit'>Update Card</Button>
+              <Button variant='info' type='submit'>Add Card</Button>
             </Form>
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='danger' onClick={() => {this.props.deleteCard(this.props.card._id)}}>Delete</Button>
           <Button variant="secondary" onClick={this.props.onHide}>
             Close
           </Button>
@@ -53,4 +52,4 @@ class CardModal extends React.Component {
   }
 }
 
-export default CardModal;
+export default SearchModal;
