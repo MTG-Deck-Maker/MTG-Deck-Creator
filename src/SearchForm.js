@@ -77,12 +77,11 @@ class SearchForm extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={() => this.handleInput()}>
+        {/* <form onSubmit={() => this.handleInput()}> */}
           <label htmlFor="">Search A Card By Name:
             <input type="text" onInput={this.handleInput} />
           </label>
-          {/* <button type='submit'>Search</button> */}
-        </form>
+        {/* </form> */}
 
         <SearchModal
           openSearchModal={this.openSearchModal}
@@ -104,7 +103,7 @@ class SearchForm extends React.Component {
                     src={cardElem.imageUrl}
                   />
                   <Card.Body>
-                    {/* <Button variant="primary" onClick={ () =>{this.postCard(cardElem)}}>Add Card</Button> */}
+                    
                   </Card.Body>
                 </Card>
                 </Col>

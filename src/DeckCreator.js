@@ -85,11 +85,15 @@ class DeckCreate extends React.Component {
 
   componentDidMount() {
     this.getCardsDb();
+    //this.props.auth0.isAuthenticated && this.getCardsDb()
   }
 
 
 
   render() {
+    //** refills cards[] after logging in
+   this.props.auth0.isAuthenticated && this.getCardsDb()
+
     return (
       <>
         <h1>MTG Deck Builder</h1>
@@ -103,27 +107,35 @@ class DeckCreate extends React.Component {
           deleteCard={this.deleteCard}
         />
 
-        <Row xs={1} md={2} lg={5} className="g-5">
-          {this.state.cards.length > 0 ?
+        {/* renders only when logged in */}
+        {this.props.auth0.isAuthenticated ?
+         <Row xs={1} md={2} lg={5} className="g-5">
+          (this.state.cards.length > 0 ?
             this.state.cards.map((cardElem, idx) => {
               return (
-                <Col>
-                  <Card key={cardElem._id} >
-                    <Card.Img
-                      onClick={() => { this.openModal(cardElem) }}
-                      variant="top"
-                      src={cardElem.imageUrl}
-                    />
-                    <Card.Body>
-                    </Card.Body>
-                  </Card>
-                </Col>
+              <Col>
+                <Card key={cardElem._id} >
+                  <Card.Img
+                    onClick={() => { this.openModal(cardElem) }}
+                    variant="top"
+                    src={cardElem.imageUrl}
+                    style={{ width: '200px' }}
+                  />
+                  <Card.Body>
+                  </Card.Body>
+                </Card>
+               </Col>
               )
-            },
-            ) : (
-              <h2>NO DECK FOUND</h2>
-            )}
-        </Row>
+            }) :
+            <h2>NO DECK FOUND</h2>
+          )  
+          </Row> :
+          <div>
+            <h2>PLEASE LOGIN</h2>
+            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen title="login"></iframe>
+            <p><a href="https://giphy.com/gifs/adultswim-adult-swim-birdgirl-access-denied-t0virGpgSlp4mkfiXq">via GIPHY</a></p>
+          </div>
+        }
 
       </>
     )
