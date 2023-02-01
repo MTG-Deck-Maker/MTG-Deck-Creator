@@ -22,9 +22,9 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Login />
+        {/* <Login />
         <Logout />
-        <Profile />
+        <Profile /> */}
         <Router>
           <Header />
           <Routes>

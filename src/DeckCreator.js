@@ -89,10 +89,13 @@ class DeckCreate extends React.Component {
 
 
   render() {
+    //** refills cards[] after logging in
+    this.props.auth0.isAuthenticated && this.getCardsDb()
+
     return (
       <>
         <h1>MTG Deck Builder</h1>
-
+        
         <CardModal
           openModal={this.openModal}
           onHide={this.closeModal}
@@ -101,24 +104,31 @@ class DeckCreate extends React.Component {
           updateCard={this.updateCard}
           deleteCard={this.deleteCard}
         />
-        {this.state.cards.length > 0 ?
-          this.state.cards.map((cardElem, idx) => {
-            return (
-              <Card key={cardElem._id} >
-                <Card.Img
-                  onClick={() => { this.openModal(cardElem) }}
-                  variant="top"
-                  src={cardElem.imageUrl}
-                  style={{ width: '200px' }}
-                />
-                <Card.Body>
-                </Card.Body>
-              </Card>
-            )
-          },
-          ) : (
-            <h2>NO DECK FOUND</h2>
-          )}
+        
+        {/* renders only when logged in */}
+        {this.props.auth0.isAuthenticated ?
+          (this.state.cards.length > 0 ?
+            this.state.cards.map((cardElem, idx) => {
+              return (
+                <Card key={cardElem._id} >
+                  <Card.Img
+                    onClick={() => { this.openModal(cardElem) }}
+                    variant="top"
+                    src={cardElem.imageUrl}
+                    style={{ width: '200px' }}
+                  />
+                  <Card.Body>
+                  </Card.Body>
+                </Card>
+              )}) : 
+              <h2>NO DECK FOUND</h2>
+          ) :
+          <div>
+            <h2>PLEASE LOGIN</h2>
+            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+            <p><a href="https://giphy.com/gifs/adultswim-adult-swim-birdgirl-access-denied-t0virGpgSlp4mkfiXq">via GIPHY</a></p>
+          </div>
+        }
       </>
     )
   }
