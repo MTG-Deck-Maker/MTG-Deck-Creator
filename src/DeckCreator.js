@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import CardModal from './components/CardModal';
-import { Button, Card } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
+import './DeckCreator.css'
 
 class DeckCreate extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class DeckCreate extends React.Component {
   // **********THIS OPENS/CLOSE THE  MODALS ************
   openModal = (cardObj) => this.setState({ isOpen: true, selectedCard: cardObj });
 
-  closeModal = () => this.setState({ isOpen: false});
+  closeModal = () => this.setState({ isOpen: false });
 
 
 
@@ -89,24 +90,29 @@ class DeckCreate extends React.Component {
           updateCard={this.updateCard}
           deleteCard={this.deleteCard}
         />
-        {this.state.cards.length > 0 ?
-          this.state.cards.map((cardElem, idx) => {
-            return (
-              <Card key={cardElem._id} >
-                <Card.Img
-                  onClick={() => { this.openModal(cardElem) }}
-                  variant="top"
-                  src={cardElem.imageUrl}
-                  style={{ width: '200px' }}
-                />
-                <Card.Body>
-                </Card.Body>
-              </Card>
-            )
-          },
-          ) : (
-            <h2>NO DECK FOUND</h2>
-          )}
+
+        <Row xs={1} md={2} lg={5} className="g-5">
+          {this.state.cards.length > 0 ?
+            this.state.cards.map((cardElem, idx) => {
+              return (
+                <Col>
+                  <Card key={cardElem._id} >
+                    <Card.Img
+                      onClick={() => { this.openModal(cardElem) }}
+                      variant="top"
+                      src={cardElem.imageUrl}
+                    />
+                    <Card.Body>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            },
+            ) : (
+              <h2>NO DECK FOUND</h2>
+            )}
+        </Row>
+
       </>
     )
   }
