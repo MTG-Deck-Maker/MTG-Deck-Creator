@@ -27,7 +27,7 @@ Marco Villafana
 
 [slideshow](https://docs.google.com/presentation/d/14JTCbPoXJEQRco3Ri1qIkzPXZwUqqDvzex4ohUIkdMU/edit?usp=sharing)
 
-## Attrutions:
+## Attributions:
 
 [trello](https://trello.com/b/HKhgU6xZ/mtg-deck-builder)
 
