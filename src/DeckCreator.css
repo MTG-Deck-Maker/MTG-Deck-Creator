@@ -3,6 +3,7 @@
   margin: auto;
 }
 .card {
-  border-width: none;
-  background-color: #aaa;
+  border: none !important;
+  /* background-color: #edf2f4 !important ; */
+  margin: 20px 0px;
 }
