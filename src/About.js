@@ -4,6 +4,7 @@ import tylerImg from './images/TylerHuntley.png'
 import brennanImg from './images/Capricious_Malone.png'
 import marcoImg from './images/Marco_Villafana.png'
 import rafaelImg from './images/Rafael.png'
+import kenImg from './images/Ken_Holt.png'
 
 class Profile extends Component {
 
@@ -32,7 +33,7 @@ class Profile extends Component {
         </Card>
 
         <Card style={{ width: '30rem' }}>
-          <Card.Img variant="top" src={tylerImg} />
+          <Card.Img variant="top" src={kenImg} />
           <Card.Body>
             <Card.Title>About Ken:</Card.Title>
             <Card.Text>
