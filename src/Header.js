@@ -9,7 +9,7 @@ class Header extends React.Component {
         <Navbar.Brand>My Cards</Navbar.Brand>
         <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
         <NavItem><Link to="/About" className="nav-link">About Us</Link></NavItem>
-        
+        <NavItem><Link to="/SearchForm" className='nav-link'>Search For A Card</Link></NavItem>
       </Navbar>
     )
   }

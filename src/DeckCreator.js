@@ -8,7 +8,6 @@ class DeckCreate extends React.Component {
     super(props);
     this.state = {
       cards: [],
-      tempCards: [],
       isOpen: false,
       selectedCard: {},
     }
@@ -24,36 +23,6 @@ class DeckCreate extends React.Component {
 
 
     } catch (error) {
-      console.log(error.message);
-    }
-  }
-  // ********** THIS GET A CARD FROM API ************
-  getCard = async (name) => {
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/card/${name}`;
-      let cardData = await axios.get(url);
-
-      this.setState({
-        tempCard: cardData.data
-      });
-
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  // ********** THIS POSTS A CARD ************
-  postCard = async (cardObj) => {
-    try {
-      let url = `${process.env.REACT_APP_SERVER}/card`;
-      let createdCard = await axios.post(url, cardObj);
-
-      this.setState({
-        cards: [...this.state.cards, createdCard.data]
-      });
-    }
-    catch (error) {
       console.log(error.message);
     }
   }
@@ -88,17 +57,18 @@ class DeckCreate extends React.Component {
       this.setState({
         cards: updatedCards
       });
+      this.closeModal();
     }
     catch (error) {
       console.log(error.message);
     }
   };
+  // **********THIS OPENS/CLOSE THE  MODALS ************
+  openModal = (cardObj) => this.setState({ isOpen: true, selectedCard: cardObj });
 
-  openModal = (cardObj) => {
-    console.log('here')
-    this.setState({ isOpen: true, selectedCard: cardObj });
-  }
-  closeModal = () => this.setState({ isOpen: false });
+  closeModal = () => this.setState({ isOpen: false});
+
+
 
   componentDidMount() {
     this.getCardsDb();
@@ -110,32 +80,33 @@ class DeckCreate extends React.Component {
     return (
       <>
         <h1>MTG Deck Builder</h1>
+
         <CardModal
-        openModal={this.openModal}
-        onHide={this.closeModal}
-        isOpen={this.state.isOpen}
-        card={this.state.selectedCard}
-        updateCard={this.updateCard}
+          openModal={this.openModal}
+          onHide={this.closeModal}
+          isOpen={this.state.isOpen}
+          card={this.state.selectedCard}
+          updateCard={this.updateCard}
+          deleteCard={this.deleteCard}
         />
         {this.state.cards.length > 0 ?
           this.state.cards.map((cardElem, idx) => {
-          return (
-            <Card key={cardElem._id} >
-              <Card.Img 
-              onClick={() => {this.openModal(cardElem)}}
-              variant="top"
-              src={cardElem.imageUrl} 
-              style={{width:'200px'}} 
-              />
-              <Card.Body>
-                <Button variant="primary">Get Card</Button>
-              </Card.Body>
-            </Card>
-          )
-        },
-        ) : (
-          <h2>NO DECK FOUND</h2>
-        )}
+            return (
+              <Card key={cardElem._id} >
+                <Card.Img
+                  onClick={() => { this.openModal(cardElem) }}
+                  variant="top"
+                  src={cardElem.imageUrl}
+                  style={{ width: '200px' }}
+                />
+                <Card.Body>
+                </Card.Body>
+              </Card>
+            )
+          },
+          ) : (
+            <h2>NO DECK FOUND</h2>
+          )}
       </>
     )
   }
