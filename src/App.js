@@ -10,6 +10,9 @@ import {
   Route
 } from "react-router-dom";
 import SearchForm from './SearchForm';
+import Login from './Login';
+import Logout from './Logout';
+import Profile from './Profile';
 
 
 
@@ -19,6 +22,9 @@ class App extends React.Component {
   render() {
     return (
       <>
+        <Login />
+        <Logout />
+        <Profile />
         <Router>
           <Header />
           <Routes>
@@ -37,7 +43,7 @@ class App extends React.Component {
               element={<About />}
             >
             </Route>
-           
+
           </Routes>
           <Footer />
         </Router>
