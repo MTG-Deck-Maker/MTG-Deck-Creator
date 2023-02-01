@@ -84,7 +84,6 @@ class DeckCreate extends React.Component {
 
   componentDidMount() {
     this.getCardsDb();
-    //this.props.auth0.isAuthenticated && this.getCardsDb()
   }
 
 
