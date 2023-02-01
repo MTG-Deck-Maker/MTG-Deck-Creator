@@ -4,6 +4,7 @@ import SearchModal from './components/SearchModal'
 import axios from 'axios';
 import './SearchForm.css'
 import {withAuth0} from '@auth0/auth0-react';
+import PlaceholderImg from './assets/NoImage.jpg'
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -90,7 +91,7 @@ class SearchForm extends React.Component {
           card={this.state.selectedCard}
           postCard={this.postCard}
         />
-                <Row xs={1} md={2} lg={5} className="g-5">
+                <Row xs={1} md={2} lg={3} xl={5} className="g-4">
         {
           this.state.tempCards.length > 0 ?
             this.state.tempCards.map((cardElem, idx) => {
@@ -100,11 +101,8 @@ class SearchForm extends React.Component {
                   <Card.Img
                     onClick={() => { this.openSearchModal(cardElem) }}
                     variant="top"
-                    src={cardElem.imageUrl}
+                    src= {cardElem.imageUrl ? cardElem.imageUrl : PlaceholderImg}
                   />
-                  <Card.Body>
-                    
-                  </Card.Body>
                 </Card>
                 </Col>
               )

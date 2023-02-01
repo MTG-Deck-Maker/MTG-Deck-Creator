@@ -95,7 +95,7 @@ class DeckCreate extends React.Component {
 
     return (
       <>
-        <h1>MTG Deck Builder</h1>
+        {/* <h1>MTG Deck Builder</h1> */}
 
         <CardModal
           openModal={this.openModal}
@@ -108,7 +108,7 @@ class DeckCreate extends React.Component {
 
         {/* renders only when logged in */}
         {this.props.auth0.isAuthenticated ?
-          <Row xs={1} md={2} lg={5} className="g-5">
+          <Row xs={1} md={2} lg={3} xl={5} className="g-4">
           {(this.state.cards.length > 0 ?
             this.state.cards.map((cardElem, idx) => {
               return (
@@ -120,8 +120,6 @@ class DeckCreate extends React.Component {
                   src={cardElem.imageUrl}
                   style={{ width: '200px' }}
                 />
-                <Card.Body>
-                </Card.Body>
               </Card>
             </Col>
             )}) :
