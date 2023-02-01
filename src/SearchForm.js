@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import SearchModal from './components/SearchModal'
 import axios from 'axios';
+import {withAuth0} from '@auth0/auth0-react';
 
 
 class SearchForm extends React.Component {
@@ -44,16 +45,28 @@ class SearchForm extends React.Component {
     // ********** THIS POSTS A CARD ************
     
     postCard = async (cardObj) => {
-      try {
-        let url = `${process.env.REACT_APP_SERVER}/card`;
-        let createdCard = await axios.post(url, cardObj);
-  
-        this.setState({
-          cards: [...this.state.cards, createdCard.data]
-        });
-      }
-      catch (error) {
-        console.log(error.message);
+      if(this.props.auth0.isAuthenticated){
+        const res = await this.props.auth0.getIdTokenClaims()
+        const jwt = res.__raw
+        // console.log(jwt);
+        const config = {
+          headers: {"Authorization": `Bearer ${jwt}`}, 
+          method: 'post',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: '/card',
+          data: cardObj
+        }
+        try {
+          
+          let createdCard = await axios(config);
+    
+          this.setState({
+            cards: [...this.state.cards, createdCard.data]
+          });
+        }
+        catch (error) {
+          console.log(error.message);
+        }
       }
     }
 
@@ -107,4 +120,4 @@ class SearchForm extends React.Component {
 
 }
 
-export default SearchForm;
+export default withAuth0(SearchForm);
