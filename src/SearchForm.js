@@ -77,11 +77,11 @@ class SearchForm extends React.Component {
   render() {
     return (
       <>
-        <form onSubmit={() => this.handleInput()}>
+        {/* <form onSubmit={() => this.handleInput()}> */}
           <label htmlFor="">Search A Card By Name:
             <input type="text" onInput={this.handleInput} />
           </label>
-        </form>
+        {/* </form> */}
 
         <SearchModal
           openSearchModal={this.openSearchModal}
