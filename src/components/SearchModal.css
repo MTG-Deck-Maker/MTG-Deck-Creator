@@ -1,0 +1,23 @@
+.modal-header
+{
+    background-color: #2b2d42;
+    color: #EF233C;
+}
+
+.modal-body
+{
+    background-color: #2b2d42;
+    color: #EF233C;
+}
+.modal-footer
+{
+    background-color: #2b2d42;
+    color: #EF233C;
+}
+
+.cardImg
+{
+    width: 450px;
+    border-radius: 14px;
+}
+

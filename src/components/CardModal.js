@@ -30,7 +30,7 @@ class CardModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <img alt='a card' src={this.props.card.imageUrl}></img>
+            <img className='cardImg'  alt='a card' src={this.props.card.imageUrl}></img>
             <Form onSubmit={this.handleCardUpdate}>
               <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
@@ -39,7 +39,7 @@ class CardModal extends React.Component {
               <Form.Group controlId='owned'>
                 <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
               </Form.Group>
-              <Button variant='info' type='submit'>Update Card</Button>
+              <Button variant='secondary' type='submit'>Update Card</Button>
             </Form>
           </Container>
         </Modal.Body>

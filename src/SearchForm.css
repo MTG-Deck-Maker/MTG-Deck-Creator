@@ -4,4 +4,17 @@
 }
 .card {
   width: 300px;
+  margin-left: 30px;
+}
+
+.search
+{
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.noCards
+{
+  margin: auto;
 }

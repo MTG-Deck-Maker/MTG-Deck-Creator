@@ -79,8 +79,8 @@ class SearchForm extends React.Component {
     return (
       <>
         {/* <form onSubmit={() => this.handleInput()}> */}
-          <label htmlFor="">Search A Card By Name:
-            <input type="text" onInput={this.handleInput} />
+          <label className='search' htmlFor="">Search A Card By Name:
+            <input className='search' type="text" onInput={this.handleInput} />
           </label>
         {/* </form> */}
 
@@ -108,7 +108,7 @@ class SearchForm extends React.Component {
               )
             },
             ) : (
-              <h2>NO CARDS FOUND</h2>
+              <h1 className='noCards'>NO CARDS FOUND</h1>
             )
         }
         </Row>
