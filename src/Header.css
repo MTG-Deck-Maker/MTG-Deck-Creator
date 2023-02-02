@@ -1,22 +1,42 @@
+
 .nav-item{
   color: #fff;
   margin: 10px;
 }
+
 .navbar-brand{
   font-weight: bold;
-  font-size: 1.5rem !important;
+  font-size: 1.8rem !important;
   color: #ef233c !important;
+  margin-left: 30px;
 }
+
 .nav-item button{
   border-radius: 10px;
 }
+
 body {
   background-color: #edf2f4 !important;
 }
+
 a {
   text-decoration: none !important;
   color: #ef233c !important;
 }
-.navbar{
+
+.navbar
+{
   background-color: rgb(33, 37, 41);
-  }
+  justify-content: space-between !important;
+}
+
+.nav-item:nth-of-type(4)
+{
+  text-align: center;
+}
+
+.fontNav
+{
+  font-size: 1.3rem;
+}
+

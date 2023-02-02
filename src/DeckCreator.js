@@ -126,9 +126,9 @@ class DeckCreate extends React.Component {
             <h2>NO DECK FOUND</h2>
             )}
           </Row> :
-          <div>
+          <div >
             <h2>PLEASE LOGIN</h2>
-            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="480" height="270" frameBorder="0" className="giphy-embed" allowFullScreen title="login"></iframe>
+            <iframe src="https://giphy.com/embed/t0virGpgSlp4mkfiXq" width="100%" height="500" frameBorder="0" className="giphy-embed" allowFullScreen title="login"></iframe>
             <p><a href="https://giphy.com/gifs/adultswim-adult-swim-birdgirl-access-denied-t0virGpgSlp4mkfiXq">via GIPHY</a></p>
           </div>
         }
