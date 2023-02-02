@@ -1,9 +1,23 @@
 .card-img-top{
-  width: 300px;
+  width: 300px !important;
   margin: auto;
 }
 .card {
   border: none !important;
-  /* background-color: #edf2f4 !important ; */
+  width: 300px; 
   margin: 20px 0px;
 }
+
+
+div h2 
+{
+  text-align: center !important;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+div p
+{
+  text-align: center !important;
+}
+

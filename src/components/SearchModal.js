@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, Container, Modal } from 'react-bootstrap';
+import './SearchModal.css'
 
 class SearchModal extends React.Component {
   
@@ -25,20 +26,20 @@ class SearchModal extends React.Component {
         onHide={this.props.onHide}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{this.props.card.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container>
-            <img alt='a card' src={this.props.card.imageUrl}></img>
+            <img className='cardImg' alt='a card' src={this.props.card.imageUrl}></img>
             <Form onSubmit={this.handleCardAdd}>
               <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control defaultValue={this.props.card.name} type='text' />
               </Form.Group>
               <Form.Group controlId='owned'>
-                <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='owned' />
+                <Form.Check defaultChecked={this.props.card.owned} type='checkbox' label='Owned' />
               </Form.Group>
-              <Button variant='info' type='submit'>Add Card</Button>
+              <Button variant='secondary' type='submit'>Add Card</Button>
             </Form>
           </Container>
         </Modal.Body>

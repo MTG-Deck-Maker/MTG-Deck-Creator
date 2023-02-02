@@ -5,6 +5,7 @@ import brennanImg from './images/Capricious_Malone.png'
 import marcoImg from './images/Marco_Villafana.png'
 import rafaelImg from './images/Rafael.png'
 import kenImg from './images/Ken_Holt.png'
+import './About.css'
 
 class Profile extends Component {
 
